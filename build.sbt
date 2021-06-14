@@ -61,7 +61,7 @@ lazy val commonSettings = Seq(
     "io.circe"             %% "circe-core"        % "0.14.1",
     "io.circe"             %% "circe-parser"      % "0.14.1",
     "io.circe"             %% "circe-yaml"        % "0.13.1",
-    "org.scalameta"        %% "scalameta"         % "4.4.20",
+    "org.scalameta"        %% "scalameta"         % "4.4.21",
     "com.julianpeeters"    %% "avrohugger-core"   % "1.0.0-RC24" % Test,
     "org.typelevel"        %% "cats-laws"         % "2.6.1"      % Test,
     "io.circe"             %% "circe-testing"     % "0.14.1"     % Test,
