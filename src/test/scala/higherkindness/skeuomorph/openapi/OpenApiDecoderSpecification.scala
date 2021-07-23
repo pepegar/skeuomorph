@@ -20,7 +20,7 @@ import io.circe.Decoder
 import JsonDecoders._
 
 import schema._
-import cats.implicits._
+import cats.syntax.all._
 import JsonSchemaF.Fixed
 
 class OpenApiDecoderSpecification extends org.specs2.mutable.Specification {

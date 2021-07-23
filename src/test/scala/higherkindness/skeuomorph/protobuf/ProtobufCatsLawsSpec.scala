@@ -19,7 +19,6 @@ package higherkindness.skeuomorph.protobuf
 import higherkindness.skeuomorph.instances._
 import org.typelevel.discipline.specs2.Discipline
 import cats.laws.discipline.{FoldableTests, FunctorTests, TraverseTests}
-import cats.implicits._
 import org.specs2._
 
 class ProtobufCatsLawsSpec extends Specification with ScalaCheck with Discipline {

@@ -19,7 +19,7 @@ package higherkindness.skeuomorph
 import java.util.UUID
 
 import cats.data.NonEmptyList
-import cats.implicits._
+import cats.syntax.all._
 import org.apache.avro.Schema
 import org.scalacheck._
 import org.scalacheck.cats.implicits._
@@ -29,7 +29,7 @@ import protobuf._
 import openapi._
 import openapi.schema.OpenApi
 import higherkindness.droste._
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object instances {
   lazy val nonEmptyString: Gen[String] = Gen.alphaStr.filter(_.nonEmpty)
@@ -301,8 +301,8 @@ object instances {
         JsonSchemaF.byte[T]().pure[Gen],
         JsonSchemaF.binary[T]().pure[Gen],
         JsonSchemaF.boolean[T]().pure[Gen],
-        JsonSchemaF.date[T].pure[Gen],
-        JsonSchemaF.dateTime[T].pure[Gen],
+        JsonSchemaF.date[T]().pure[Gen],
+        JsonSchemaF.dateTime[T]().pure[Gen],
         JsonSchemaF.password[T]().pure[Gen],
         T.arbitrary map JsonSchemaF.array,
         Gen.listOf(nonEmptyString) map JsonSchemaF.enum[T],

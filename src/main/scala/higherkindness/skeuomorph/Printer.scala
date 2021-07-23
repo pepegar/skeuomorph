@@ -18,7 +18,7 @@ package higherkindness.skeuomorph
 
 import catz.contrib.Decidable
 import cats.{Contravariant, Show}
-import cats.implicits._
+import cats.syntax.all._
 import cats.kernel.Eq
 
 trait Printer[T] extends Printer.ContravariantPrinter[T]

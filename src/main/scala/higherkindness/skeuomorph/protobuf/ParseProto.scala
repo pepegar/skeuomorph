@@ -31,7 +31,7 @@ import higherkindness.skeuomorph.{Parser, _}
 import higherkindness.droste._
 import higherkindness.droste.syntax.embed._
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object ParseProto {
 

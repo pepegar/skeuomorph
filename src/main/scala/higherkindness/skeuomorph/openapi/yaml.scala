@@ -17,7 +17,7 @@
 package higherkindness.skeuomorph.openapi
 import io.circe.{Decoder => JsonDecoder, _}
 import io.circe.yaml.parser
-import cats.implicits._
+import cats.syntax.all._
 
 object yaml {
   type Failure    = Either[ParsingFailure, DecodingFailure]

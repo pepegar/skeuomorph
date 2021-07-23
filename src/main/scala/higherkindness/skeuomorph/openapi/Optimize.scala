@@ -18,7 +18,7 @@ package higherkindness.skeuomorph.openapi
 import higherkindness.droste._
 
 import cats.data.State
-import cats.implicits._
+import cats.syntax.all._
 import scala.annotation.tailrec
 
 object Optimize {

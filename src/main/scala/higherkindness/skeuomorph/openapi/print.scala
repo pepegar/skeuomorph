@@ -21,7 +21,7 @@ import higherkindness.skeuomorph.Printer.{konst => κ, _}
 import higherkindness.skeuomorph.catz.contrib.ContravariantMonoidalSyntax._
 import higherkindness.skeuomorph.catz.contrib.Decidable._
 import higherkindness.skeuomorph.openapi.JsonSchemaF.{string => _, _}
-import cats.implicits._
+import cats.syntax.all._
 import cats.Show
 
 import higherkindness.droste._

@@ -67,7 +67,8 @@ class AvroProtocolSpec extends Specification with ScalaCheck {
 
   def codegenAvroProtocol =
     prop { (avdlName: ValidAvdlName, compressionType: CompressionType, useIdiomaticEndpoints: Boolean) =>
-      val (pkg, actual) = gen(avdlName.name, compressionType, useIdiomaticEndpoints).right.get
+      val (pkg, actual) = gen(avdlName.name, compressionType, useIdiomaticEndpoints)
+        .fold(left => throw new Exception(s"Failed either: $left"), identity)
 
       val expected = codegenExpectation(avdlName.name, compressionType, pkg, useIdiomaticEndpoints)
         .parse[Source]

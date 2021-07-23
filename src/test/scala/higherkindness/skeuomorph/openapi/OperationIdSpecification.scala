@@ -21,7 +21,7 @@ import helpers._
 
 class OperationIdSpecification extends org.specs2.mutable.Specification {
 
-  import cats.implicits._
+  import cats.syntax.all._
   import OperationIdSpecification._
   import Http._
 

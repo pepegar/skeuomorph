@@ -30,7 +30,7 @@ class OpenApiNestedObjectSpecification extends org.specs2.mutable.Specification 
           .withSchema("Foos", Fixed.array(obj("y" -> Fixed.integer())()))
       ) must ===(
         openApi("name")
-          .withSchema("Bar", obj("x" -> Fixed.string)())
+          .withSchema("Bar", obj("x" -> Fixed.string())())
           .withSchema("Foo", obj("bar" -> Fixed.reference("Bar"))())
           .withSchema("AnonymousObject", obj("y" -> Fixed.integer())())
           .withSchema("Foos", Fixed.array(Fixed.reference("AnonymousObject")))

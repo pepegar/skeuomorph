@@ -23,9 +23,8 @@ import higherkindness.skeuomorph.catz.contrib.Decidable._
 import higherkindness.skeuomorph.openapi._
 import higherkindness.skeuomorph.openapi.print._
 import client.http4s.print._
-import cats.implicits._
 import higherkindness.droste._
-import cats.implicits._
+import cats.syntax.all._
 
 import higherkindness.skeuomorph.openapi.print.Codecs
 

@@ -18,7 +18,7 @@ package higherkindness.skeuomorph.protobuf
 
 import cats.{Applicative, Eq}
 import cats.data.NonEmptyList
-import cats.implicits._
+import cats.syntax.all._
 import higherkindness.skeuomorph.protobuf.ProtobufF.OptionValue
 import higherkindness.droste.util.DefaultTraverse
 

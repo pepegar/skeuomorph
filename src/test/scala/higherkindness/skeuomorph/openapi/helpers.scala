@@ -18,7 +18,7 @@ package higherkindness.skeuomorph.openapi
 
 import io.circe.parser._
 import io.circe.Json
-import cats.implicits._
+import cats.syntax.all._
 import schema._
 import scala.collection.compat._
 

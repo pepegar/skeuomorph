@@ -29,7 +29,7 @@ import org.apache.avro.{LogicalType, LogicalTypes, Schema}
 import org.apache.avro.Schema.Type
 import higherkindness.droste.{Algebra, Coalgebra}
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 @deriveTraverse sealed trait AvroF[A]
 object AvroF {

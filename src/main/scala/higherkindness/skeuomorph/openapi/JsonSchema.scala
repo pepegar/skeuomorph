@@ -18,7 +18,7 @@ package higherkindness.skeuomorph.openapi
 
 import io.circe.Json
 import higherkindness.droste._
-import cats.implicits._
+import cats.syntax.all._
 import cats._
 
 import higherkindness.droste.data.Fix

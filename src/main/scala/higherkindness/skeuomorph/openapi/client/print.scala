@@ -23,7 +23,7 @@ import higherkindness.skeuomorph.catz.contrib.Decidable._
 import higherkindness.skeuomorph.openapi
 import higherkindness.skeuomorph.openapi.{schema => _, _}
 import higherkindness.skeuomorph.openapi.print._
-import cats.implicits._
+import cats.syntax.all._
 import cats.Show
 
 import higherkindness.droste._

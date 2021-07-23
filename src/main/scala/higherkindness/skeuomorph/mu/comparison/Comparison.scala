@@ -21,15 +21,8 @@ import higherkindness.droste.syntax.project.toProjectSyntaxOps
 import higherkindness.droste.syntax.embed._
 import higherkindness.skeuomorph.mu.MuF, MuF._
 import cats.Functor
-import cats.instances.list._
-import cats.instances.map._
-import cats.instances.string._
-import cats.instances.tuple._
-import cats.syntax.eq._
-import cats.syntax.option._
-import cats.syntax.foldable._
-import cats.syntax.semigroup._
-import cats.syntax.apply._
+import cats.syntax.all._
+import scala.collection.compat.immutable.LazyList
 import scala.collection.compat._
 
 /**
@@ -219,7 +212,7 @@ object Comparison extends ComparisonInstances {
           AlignUnionMembers(
             Map(
               path / Value -> is.toList.map(i => (path / Value, i1.some, i.some)),
-              path         -> is.toList.map(i => (path, `null`[T].embed.some, i.some))
+              path         -> is.toList.map(i => (path, `null`[T]().embed.some, i.some))
             ),
             Reporter.promotedToCoproduct(path, reader)
           )
@@ -259,8 +252,8 @@ object Comparison extends ComparisonInstances {
   private def different[T, A](path: Path): Comparison[T, A] = End(Result.mismatch(Different(path)))
 
   private def zipLists[T](path: Path, l1: List[T], l2: List[T], pathElem: Int => PathElement): List[Context[T]] = {
-    val l1s = l1.toStream.map(_.some) ++ Stream.continually(None)
-    val l2s = l2.toStream.map(_.some) ++ Stream.continually(None)
+    val l1s = l1.to(LazyList).map(_.some) ++ LazyList.continually(None)
+    val l2s = l2.to(LazyList).map(_.some) ++ LazyList.continually(None)
     l1s.zip(l2s).takeWhile((None, None) != _).toList.zipWithIndex.map { case (p, i) =>
       (path / pathElem(i), p._1, p._2)
     }

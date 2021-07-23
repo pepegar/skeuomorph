@@ -1,9 +1,9 @@
 ThisBuild / organization := "io.higherkindness"
 ThisBuild / githubOrganization := "47degrees"
 ThisBuild / scalaVersion := "2.13.6"
-ThisBuild / crossScalaVersions := Seq("2.12.12", "2.13.6")
+ThisBuild / crossScalaVersions := Seq("2.12.14", "2.13.6")
 
-addCommandAlias("ci-test", "scalafmtCheckAll; scalafmtSbtCheck; microsite/mdoc; testCovered")
+addCommandAlias("ci-test", "scalafmtCheckAll; scalafmtSbtCheck; microsite/mdoc; +test")
 addCommandAlias("ci-docs", "github; documentation/mdoc; headerCreateAll; microsite/publishMicrosite")
 addCommandAlias("ci-publish", "github; ci-release")
 
@@ -23,7 +23,7 @@ lazy val microsite = project
     micrositeBaseUrl := "/skeuomorph",
     micrositeHighlightTheme := "tomorrow",
     micrositeDocumentationUrl := "docs",
-    includeFilter in Jekyll := "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.js" | "*.swf" | "*.md" | "*.svg",
+    Jekyll / includeFilter := "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.js" | "*.swf" | "*.md" | "*.svg",
     micrositeGithubToken := Option(System.getenv().get("GITHUB_TOKEN")),
     micrositePushSiteWith := GitHub4s,
     micrositeFavicons := Seq(microsites.MicrositeFavicon("favicon.png", "32x32")),
@@ -60,8 +60,7 @@ lazy val commonSettings = Seq(
     "com.google.protobuf"   % "protobuf-java"     % "3.17.3",
     "io.circe"             %% "circe-core"        % "0.14.1",
     "io.circe"             %% "circe-parser"      % "0.14.1",
-    "io.circe"             %% "circe-yaml"        % "0.13.1",
-    "org.scalameta"        %% "scalameta"         % "4.4.24",
+    "io.circe"             %% "circe-yaml"        % "0.14.0",
     "com.julianpeeters"    %% "avrohugger-core"   % "1.0.0-RC24" % Test,
     "org.typelevel"        %% "cats-laws"         % "2.6.1"      % Test,
     "io.circe"             %% "circe-testing"     % "0.14.1"     % Test,
@@ -72,7 +71,15 @@ lazy val commonSettings = Seq(
     "io.chrisdavenport"    %% "cats-scalacheck"   % "0.3.0"      % Test,
     "org.scalatra.scalate" %% "scalate-core"      % "1.9.6"      % Test
   )
-) ++ compilerPlugins ++ macroSettings
+) ++ compilerPlugins ++ macroSettings ++ Seq(
+  libraryDependencies ++= (CrossVersion.partialVersion(scalaVersion.value) match {
+    case Some((2, _)) =>
+      Seq(
+        "org.scalameta" %% "scalameta" % "4.4.24"
+      )
+    case _ => Seq.empty
+  })
+)
 
 lazy val mdocSettings = Seq(
   scalacOptions ~= filterConsoleScalacOptions,
@@ -80,10 +87,14 @@ lazy val mdocSettings = Seq(
 )
 
 lazy val compilerPlugins = Seq(
-  libraryDependencies ++= Seq(
-    compilerPlugin("org.typelevel" % "kind-projector"     % "0.13.0" cross CrossVersion.full),
-    compilerPlugin("com.olegpy"   %% "better-monadic-for" % "0.3.1")
-  )
+  libraryDependencies ++= (CrossVersion.partialVersion(scalaVersion.value) match {
+    case Some((2, _)) =>
+      Seq(
+        compilerPlugin("org.typelevel" % "kind-projector"     % "0.13.0" cross CrossVersion.full),
+        compilerPlugin("com.olegpy"   %% "better-monadic-for" % "0.3.1")
+      )
+    case _ => Seq.empty
+  })
 )
 
 lazy val macroSettings: Seq[Setting[_]] = Seq(

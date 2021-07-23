@@ -18,7 +18,7 @@ package higherkindness.skeuomorph.openapi
 
 import schema._
 import io.circe._
-import cats.implicits._
+import cats.syntax.all._
 import higherkindness.droste._
 import higherkindness.droste.syntax.embed._
 import scala.language.postfixOps
@@ -33,19 +33,19 @@ object JsonDecoders {
   private def basicJsonSchemaDecoder[A: Embed[JsonSchemaF, *]]: Decoder[A] = {
     import JsonSchemaF._
     Decoder.forProduct2[(String, Option[String]), String, Option[String]]("type", "format")(Tuple2.apply).emap {
-      case ("integer", Some("int32"))    => integer[A].embed.asRight
-      case ("integer", Some("int64"))    => long[A].embed.asRight
-      case ("integer", _)                => integer[A].embed.asRight
-      case ("number", Some("float"))     => float[A].embed.asRight
-      case ("number", Some("double"))    => double[A].embed.asRight
-      case ("number", _)                 => float[A].embed.asRight
-      case ("string", Some("byte"))      => byte[A].embed.asRight
-      case ("string", Some("binary"))    => binary[A].embed.asRight
-      case ("boolean", _)                => boolean[A].embed.asRight
-      case ("string", Some("date"))      => date[A].embed.asRight
-      case ("string", Some("date-time")) => dateTime[A].embed.asRight
-      case ("string", Some("password"))  => password[A].embed.asRight
-      case ("string", _)                 => string[A].embed.asRight
+      case ("integer", Some("int32"))    => integer[A]().embed.asRight
+      case ("integer", Some("int64"))    => long[A]().embed.asRight
+      case ("integer", _)                => integer[A]().embed.asRight
+      case ("number", Some("float"))     => float[A]().embed.asRight
+      case ("number", Some("double"))    => double[A]().embed.asRight
+      case ("number", _)                 => float[A]().embed.asRight
+      case ("string", Some("byte"))      => byte[A]().embed.asRight
+      case ("string", Some("binary"))    => binary[A]().embed.asRight
+      case ("boolean", _)                => boolean[A]().embed.asRight
+      case ("string", Some("date"))      => date[A]().embed.asRight
+      case ("string", Some("date-time")) => dateTime[A]().embed.asRight
+      case ("string", Some("password"))  => password[A]().embed.asRight
+      case ("string", _)                 => string[A]().embed.asRight
       case (x, _)                        => s"$x is not well formed type".asLeft
     }
   }

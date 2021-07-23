@@ -26,7 +26,7 @@ import higherkindness.droste._
 import higherkindness.droste.syntax.all._
 import org.apache.avro.Schema.Type
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 final case class Protocol[A](
     name: String,
@@ -61,11 +61,11 @@ object Protocol {
 
     def requestToAvroF(req: Schema): AvroF[T] = {
       if (req.getType == Schema.Type.NULL)
-        `null`[T]
+        `null`[T]()
       else {
         val fields = req.getFields
         if (fields.size == 0)
-          `null`[T]
+          `null`[T]()
         else {
           // Assume it's a record type.
           // We don't support primitive types for RPC requests/responses.
@@ -83,7 +83,7 @@ object Protocol {
 
     def responseToAvroF(resp: Schema): AvroF[T] = {
       if (resp.getType == Schema.Type.NULL)
-        `null`[T]
+        `null`[T]()
       else
         // Assume it's a record type.
         // We don't support primitive types for RPC requests/responses.

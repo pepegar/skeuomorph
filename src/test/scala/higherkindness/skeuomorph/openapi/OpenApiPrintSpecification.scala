@@ -17,7 +17,7 @@
 package higherkindness.skeuomorph.openapi
 import higherkindness.skeuomorph.Printer
 import higherkindness.skeuomorph.openapi.schema.{Parameter, Reference}
-import cats.implicits._
+import cats.syntax.all._
 
 class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
   import JsonSchemaF.Fixed
@@ -129,7 +129,7 @@ class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
             |  import cats.Applicative
             |  import cats.effect.Sync
             |  import cats._
-            |  import cats.implicits._
+            |  import cats.syntax.all._
             |  import io.circe._
             |  implicit val ColorShow: Show[Color] = Show.show {
             |  case Blue => "Blue"
@@ -166,7 +166,7 @@ class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
              |  import cats.Applicative
              |  import cats.effect.Sync
              |  import cats._
-             |  import cats.implicits._
+             |  import cats.syntax.all._
              |  import io.circe._
              |  implicit val SomethingForShow: Show[`something-For`] = Show.show {
              |  case `xo-m` => "xo-m"
@@ -207,7 +207,7 @@ class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
             |  import cats.Applicative
             |  import cats.effect.Sync
             |  import cats._
-            |  import cats.implicits._
+            |  import cats.syntax.all._
             |  import io.circe._
             |  implicit val PetEncoder: Encoder[Pet] = Encoder.instance { x =>
             |import shapeless.Poly1
@@ -247,7 +247,7 @@ class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
             |  import cats.Applicative
             |  import cats.effect.Sync
             |  import cats._
-            |  import cats.implicits._
+            |  import cats.syntax.all._
             |  import io.circe._
             |  implicit val Pet1Encoder: Encoder[`1-Pet`] = Encoder.instance { x =>
             |import shapeless.Poly1
@@ -407,7 +407,7 @@ class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
            |  import cats.Applicative
            |  import cats.effect.Sync
            |  import cats._
-           |  import cats.implicits._
+           |  import cats.syntax.all._
            |  import io.circe._
            |  implicit val StatusShow: Show[status] = Show.show {
            |  case Pending => "Pending"
@@ -1048,7 +1048,7 @@ class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
       ) must ===(
         s"""|import cats._
             |import cats.effect._
-            |import cats.implicits._
+            |import cats.syntax.all._
             |import io.circe._
             |import org.http4s._
             |import org.http4s.client.Client
@@ -1086,7 +1086,7 @@ class OpenApiPrintSpecification extends org.specs2.mutable.Specification {
       impl.print(PackageName("petstore") -> petstoreOpenApi.withPath(mediaTypeReferences)) must ===(
         s"""|import cats._
         |import cats.effect._
-        |import cats.implicits._
+        |import cats.syntax.all._
         |import io.circe._
         |import org.http4s._
         |import org.http4s.client.Client

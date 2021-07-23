@@ -82,7 +82,7 @@ class ProtobufProtocolSpec extends Specification with ScalaCheck {
       }
 
       val codegen: mu.Protocol[Mu[MuF]] => Pkg = { p =>
-        mu.codegen.protocol(p, streamCtor).right.get
+        mu.codegen.protocol(p, streamCtor).fold(left => throw new Exception(s"Failed either: $left"), identity)
       }
 
       val actual = (toMuProtocol andThen codegen)(bookProtocol)
@@ -209,7 +209,7 @@ class ProtobufProtocolSpec extends Specification with ScalaCheck {
     }
 
     val codegen: mu.Protocol[Mu[MuF]] => Pkg = { p =>
-      mu.codegen.protocol(p, streamCtor).right.get
+      mu.codegen.protocol(p, streamCtor).fold(left => throw new Exception(s"Failed either: $left"), identity)
     }
 
     val actual = (toMuProtocol andThen codegen)(protobufProtocol)

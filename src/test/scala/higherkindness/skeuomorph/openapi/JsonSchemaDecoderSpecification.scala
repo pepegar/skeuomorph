@@ -19,7 +19,7 @@ package higherkindness.skeuomorph.openapi
 import io.circe.Decoder
 import JsonDecoders._
 import io.circe.Json
-import cats.implicits._
+import cats.syntax.all._
 import helpers._
 
 class JsonSchemaDecoderSpecification extends org.specs2.mutable.Specification {

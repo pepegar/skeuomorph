@@ -19,7 +19,7 @@ package higherkindness.skeuomorph.openapi
 class NestedObjectSpecification extends org.specs2.mutable.Specification {
   import JsonSchemaF.Fixed
   import Optimize._
-  import cats.implicits._
+  import cats.syntax.all._
   import higherkindness.droste._
   import helpers._
 
