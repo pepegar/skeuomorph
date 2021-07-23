@@ -70,7 +70,7 @@ lazy val commonSettings = Seq(
     "org.specs2"           %% "specs2-scalacheck" % "4.12.3"     % Test,
     "org.scalacheck"       %% "scalacheck"        % "1.15.4"     % Test,
     "io.chrisdavenport"    %% "cats-scalacheck"   % "0.3.0"      % Test,
-    "org.scalatra.scalate" %% "scalate-core"      % "1.9.6"      % Test
+    "org.scalatra.scalate" %% "scalate-core"      % "1.9.7"      % Test
   )
 ) ++ compilerPlugins ++ macroSettings
 
